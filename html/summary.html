@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>summary</title>
+    <link rel="stylesheet" type="text/css" href="../css/webkakeibo.css">
+</head>
+<script type="text/javascript">
+    function showSelectedYear(obj) {
+        // formオブジェクトを作成
+        var form = document.createElement("Form");
+        // 作ったformオブジェクトの属性値を設定
+        form.action = "/user/summary";
+        form.method = "get";
+        // 作ったformオブジェクトを表示しない指定
+        form.style.display = "none";
+        // 作ったformオブジェクトをbodyに追加
+        document.body.appendChild(form);
+        // もらったinputオブジェクトを作ったformに追加
+        form.appendChild(obj);
+        // formの送信
+        form.submit();
+    }
+</script>
+<body>
+<div class="container">
+    <nav class="header">
+        <ul id="control">
+            <li>
+            {{$thisYear := .Year}}
+                <select class="year_select" name="selected_year" onchange="showSelectedYear(this)">
+                {{range $v := .YearList}}
+                {{if eq $v $thisYear}}
+                    <option value={{$v}} selected>{{$v}}年</option>
+                {{else}}
+                    <option value={{$v}}>{{$v}}年</option>
+                {{end}}
+                {{end}}
+                </select>
+            </li>
+        </ul>
+        <ul class="tile" id="move">
+            <li><a href="/user/list">一覧</a></li>
+            <li><a href="/user/input">入力</a></li>
+            <li><a href="/user/summary">まとめ</a></li>
+            <li><a href="/user/setting">設定</a></li>
+            <li><a href="/dologout">ログアウト</a></li>
+        </ul>
+    </nav>
+    <main class="contents_input">
+        <table class="summarylist">
+            <tr>
+                <th></th>
+                <th class="summary_header"> 1月</th>
+                <th class="summary_header"> 2月</th>
+                <th class="summary_header"> 3月</th>
+                <th class="summary_header"> 4月</th>
+                <th class="summary_header"> 5月</th>
+                <th class="summary_header"> 6月</th>
+                <th class="summary_header"> 7月</th>
+                <th class="summary_header"> 8月</th>
+                <th class="summary_header"> 9月</th>
+                <th class="summary_header">10月</th>
+                <th class="summary_header">11月</th>
+                <th class="summary_header">12月</th>
+            </tr>
+            <tr>
+                <td class="summary_sumcategory">合計</td>
+            {{range $price := .SumOfMonth}}
+                <td class="summary_summonth">{{$price}}</td>
+            {{end}}
+            </tr>
+        {{range $val := .Results}}
+            <tr>
+                <td class="summary_category">{{$val.Name}}</td>
+            {{range $price := $val.Summary}}
+                <td class="summary_month">{{$price}}</td>
+            {{end}}
+            </tr>
+        {{end}}
+            <tr>
+                <td class="summary_category">その他</td>
+            {{range $price := .OthersOfMonth}}
+                <td class="summary_month">{{$price}}</td>
+            {{end}}
+            </tr>
+        </table>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>summary</title>
+    <link rel="stylesheet" type="text/css" href="../css/webkakeibo.css">
+</head>
+<body>
+<div class="container">
+    <nav class="header">
+        <ul id="control">
+            <li>
+                <form action="/user/doupdate" method="post" id="update_post">
+                    <input class="inputbutton_circle" type="submit" value="変更">
+                    <input type="hidden" name="ID" value="{{.DatastoreId}}">
+                    <input type="hidden" name="DateBefore" value="{{.Date}}">
+                </form>
+            </li>
+            <li>
+                <form action="/user/dodelete" method="post">
+                    <input class="inputbutton_circle" type="submit" value="削除">
+                    <input type="hidden" name="ID" value="{{.DatastoreId}}">
+                    <input type="hidden" name="DateBefore" value="{{.Date}}">
+                </form>
+            </li>
+        </ul>
+        <ul class="tile" id="move">
+            <li><a href="/user/list">一覧</a></li>
+            <li><a href="/user/input">入力</a></li>
+            <li><a href="/user/summary">まとめ</a></li>
+            <li><a href="/user/setting">設定</a></li>
+            <li><a href="/dologout">ログアウト</a></li>
+        </ul>
+    </nav>
+    <main class="contents_input">
+    {{if eq .HasAnyError true}}
+        <h3>入力値に誤りがあります</h3>
+    {{end}}
+        <table class="kakeiboupdate">
+            <tr>
+                <th>日付</th>
+                <td><input type="date" form="update_post" name="Date"
+                           value="{{.Date}}" required>
+                </td>
+            </tr>
+            <tr>
+                <th>費目</th>
+                <td>
+                    <select form="update_post" id="input_category" name="Category">
+                    {{$category := .CategoryIndex}}
+                    {{range $i, $v := .CategoryList}}
+                    {{if eq $i $category}}
+                        <option value={{$i}} selected>{{$v}}</option>
+                    {{else}}
+                        <option value={{$i}}>{{$v}}</option>
+                    {{end}}
+                    {{end}}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>詳細</th>
+                <td><input type="text" id="update_detail" form="update_post" name="Detail" value="{{.Detail}}"></td>
+            </tr>
+            <tr>
+                <th>金額</th>
+                <td><input type="number" form="update_post" name="Price" value="{{.Price}}" required></td>
+            </tr>
+        </table>
+    </main>
+</div>
+</body>
