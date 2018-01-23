@@ -1,4 +1,4 @@
-package app
+package lib
 
 import (
 	"net/http"
@@ -11,14 +11,8 @@ import (
 // 一覧画面の表示
 func ShowList(w http.ResponseWriter, r *http.Request) {
 
-	// なぜかhtmlが表示されず、HTTP 500が返ってくる
-	// ShowListまでリダイレクトはされる
-	// ShowListでfprintfで単純な文字列を表示させるだけならできる
-	// yearToShow, monthToShowの表示までもできる
-	// ReadListもerrorは返ってきてない
-	// どうやらhtmlとcssが読み込めていないらしい(このファイルに直書きしたらOKだった)
-	// app.yamlをトップレベルに持ってきたらhtmlとcssが読み込めた
-	// 他のファイルもhtmlを同じようにする
+	// エントリの日付を1月から2月に変更しても、1月として表示されてしまう
+	// 更新の不具合？削除もできない
 
 	var err error
 	//===
@@ -54,7 +48,7 @@ func ShowList(w http.ResponseWriter, r *http.Request) {
 	//===
 	// contextの作成
 	paramToShowList, err := ReadList(r, yearToShow, monthToShow)
-//	_, err = ReadList(r, yearToShow, monthToShow)
+	//	_, err = ReadList(r, yearToShow, monthToShow)
 	//===
 	//=== ページ遷移
 	//===
@@ -65,10 +59,10 @@ func ShowList(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// htmlファイルを読み込み
-	html := template.Must(template.ParseFiles("html/list.html"))
+	html := template.Must(template.ParseFiles(DIR_HTML + "list.html"))
 	// htmlの出力
 	err = html.ExecuteTemplate(w, "list.html", paramToShowList)
-	if  err != nil {
+	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}

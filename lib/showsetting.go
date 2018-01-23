@@ -1,4 +1,4 @@
-package app
+package lib
 
 import (
 	"html/template"
@@ -26,7 +26,7 @@ func ShowSetting(w http.ResponseWriter, r *http.Request) {
 	//=== HTMLの出力
 	//===
 	// htmlTemplateを読み込み
-	var html = template.Must(template.ParseFiles("html/setting.html"))
+	var html = template.Must(template.ParseFiles(DIR_HTML + "setting.html"))
 	// getで渡されたindexのエントリを表示
 	if err := html.ExecuteTemplate(w, "setting.html", ParamToShowSetting); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

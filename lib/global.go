@@ -1,4 +1,4 @@
-package app
+package lib
 
 import (
 	"time"
@@ -9,6 +9,10 @@ const (
 	//=== 一覧(Input.html)に表示する行数
 	//===
 	INPUTLINES = 15
+	//===
+	//=== htmlファイルのディレクトリ
+	DIR_HTML = "../html/"
+	//===
 	//===
 	//=== 使いはじめる年
 	//===

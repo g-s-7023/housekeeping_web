@@ -1,4 +1,4 @@
-package app
+package lib
 
 import (
 	"html/template"
@@ -31,7 +31,7 @@ func ShowInput(w http.ResponseWriter, r *http.Request) {
 	//=== ページ遷移
 	//===
 	// htmlファイルを読み込み
-	html := template.Must(template.ParseFiles("html/input.html"))
+	html := template.Must(template.ParseFiles(DIR_HTML + "input.html"))
 	if err := html.ExecuteTemplate(w, "input.html", paramToShowInput); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

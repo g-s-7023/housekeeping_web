@@ -1,4 +1,4 @@
-package app
+package lib
 
 import (
 	"golang.org/x/net/context"
@@ -240,6 +240,7 @@ func Update(r *http.Request, p *ParamToUpdate) error {
 	//===
 	// エンティティの更新
 	if p.Year == p.YearBefore && p.Month == p.MonthBefore {
+		println("not changed")
 		// 年月が変更になっていない場合、キーは変更せず更新
 		err = datastore.RunInTransaction(ctx, func(c context.Context) error {
 			// 更新をトランザクションで実行
@@ -247,6 +248,7 @@ func Update(r *http.Request, p *ParamToUpdate) error {
 			return e
 		}, nil)
 	} else {
+		println("changed")
 		// 年月が変更になってる場合、キーを削除して新たに作成
 		err = datastore.RunInTransaction(ctx, func(c context.Context) error {
 			// 削除と作成をトランザクションで実行
@@ -254,7 +256,7 @@ func Update(r *http.Request, p *ParamToUpdate) error {
 			if e != nil {
 				return e
 			}
-			newKey := datastore.NewIncompleteKey(ctx, KAKEIBO_ENTRY, getMonthKey(ctx, familyKakeibo, p.Year, p.MonthBefore))
+			newKey := datastore.NewIncompleteKey(ctx, KAKEIBO_ENTRY, getMonthKey(ctx, familyKakeibo, p.Year, p.Month))
 			_, e = datastore.Put(ctx, newKey, &entryToUpdate)
 			return e
 		}, nil)
