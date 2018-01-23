@@ -1,4 +1,4 @@
-package housekeeping_web
+package app
 
 import (
 	"net/http"
@@ -16,7 +16,9 @@ func ShowList(w http.ResponseWriter, r *http.Request) {
 	// ShowListでfprintfで単純な文字列を表示させるだけならできる
 	// yearToShow, monthToShowの表示までもできる
 	// ReadListもerrorは返ってきてない
-	// どうやらhtmlとcssが読み込めていないらしい(このファイルに直書きしたらOK)
+	// どうやらhtmlとcssが読み込めていないらしい(このファイルに直書きしたらOKだった)
+	// app.yamlをトップレベルに持ってきたらhtmlとcssが読み込めた
+	// 他のファイルもhtmlを同じようにする
 
 	var err error
 	//===
@@ -63,11 +65,9 @@ func ShowList(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// htmlファイルを読み込み
-	html := template.Must(template.ParseFiles("../html/list.html"))
-//	html := template.Must(template.New("list").ParseFiles("../html/list.html"))
+	html := template.Must(template.ParseFiles("html/list.html"))
 	// htmlの出力
 	err = html.ExecuteTemplate(w, "list.html", paramToShowList)
-//	err = html.Execute(w, paramToShowList)
 	if  err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

@@ -1,4 +1,4 @@
-package housekeeping_web
+package app
 
 import (
 	"golang.org/x/net/context"

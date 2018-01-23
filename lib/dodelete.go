@@ -1,4 +1,4 @@
-package housekeeping_web
+package app
 
 import (
 	"html/template"
@@ -55,7 +55,7 @@ func DoDelete(w http.ResponseWriter, r *http.Request) {
 	// htmlに渡すパラメータを作成
 	src := "delete"
 	// htmlファイルを読み込み
-	html := template.Must(template.ParseFiles("../html/succeed.html"))
+	html := template.Must(template.ParseFiles("html/succeed.html"))
 	if err = html.ExecuteTemplate(w, "succeed.html", src); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

@@ -1,4 +1,4 @@
-package housekeeping_web
+package app
 
 import (
 	"html/template"
@@ -106,7 +106,7 @@ func DoUpdate(w http.ResponseWriter, r *http.Request) {
 			paramToReturn.CategoryList[key] = val.Name
 		}
 		// htmlファイルを読み込み
-		html := template.Must(template.ParseFiles("../html/update.html"))
+		html := template.Must(template.ParseFiles("html/update.html"))
 		if err := html.ExecuteTemplate(w, "update.html", paramToReturn); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
@@ -130,7 +130,7 @@ func DoUpdate(w http.ResponseWriter, r *http.Request) {
 	// htmlに渡すパラメータを作成
 	src := "Update"
 	// htmlファイルを読み込み
-	var html = template.Must(template.ParseFiles("../html/succeed.html"))
+	var html = template.Must(template.ParseFiles("html/succeed.html"))
 	if err = html.ExecuteTemplate(w, "succeed.html", src); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

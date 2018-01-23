@@ -1,4 +1,4 @@
-package housekeeping_web
+package app
 
 import (
 	"html/template"
@@ -42,7 +42,7 @@ func ShowSummary(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// htmlテンプレートを読み込み
-	html := template.Must(template.ParseFiles("../html/summary.html"))
+	html := template.Must(template.ParseFiles("html/summary.html"))
 	// htmlの出力
 	if err := html.ExecuteTemplate(w, "summary.html", paramToShowSummary); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
