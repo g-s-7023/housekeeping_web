@@ -3,7 +3,7 @@ api_version: go1
 
 handlers:
 - url: /css
-  static_dir: ../css
+  static_dir: css
 
 - url: /user/.*
   script: _go_app

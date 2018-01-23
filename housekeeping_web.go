@@ -5,8 +5,13 @@ import (
 	"housekeeping_web/lib"
 )
 
-// todo
-// スマホアプリとの連携
+// (開発サーバ)
+// app.yamlとこのファイルをdevelopフォルダにおく
+// DIR_HTMLの値を"../html/"、cssのstatic_dirを"../css"
+
+// (デプロイ)
+// app.yamlとこのファイルをトップレベルに置く
+// デプロイ DIR_HTML1の値を"html/"、cssのstatic_dirを"css"
 
 func init() {
 	http.HandleFunc("/", lib.Entry)

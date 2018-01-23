@@ -11,7 +11,7 @@ const (
 	INPUTLINES = 15
 	//===
 	//=== htmlファイルのディレクトリ
-	DIR_HTML = "../html/"
+	DIR_HTML = "html/"
 	//===
 	//===
 	//=== 使いはじめる年
