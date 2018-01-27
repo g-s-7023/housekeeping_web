@@ -50,29 +50,30 @@ const (
 	//===
 	//=== 各費目に該当する番号
 	//===
-	NONE        = 0
-	DINEOUT     = 1
-	HOMEEATING  = 2
-	BUSINESS    = 3
-	CLOTHES     = 4
-	HOBBY       = 5
-	TRAFFIC     = 6
-	RENT        = 7
-	HOUSEHOLD   = 8
-	GOODS       = 9
-	ELECTRICITY = 10
-	GAS         = 11
-	WATER       = 12
-	T_CELLPHONE = 13
-	N_CELLPHONE = 14
-	INTERNET    = 15
-	HEALTHCARE  = 16
-	HAIRSALON   = 17
-	EDUCATION   = 18
-	INSURANCE   = 19
-	ASAHI       = 20
-	MEMBERSHIP  = 21
-	OTHER       = 99
+	NONE          = 0
+	DINEOUT       = 1
+	HOMEEATING    = 2
+	BUSINESS      = 3
+	CLOTHES       = 4
+	HOBBY         = 5
+	TRAFFIC       = 6
+	RENT          = 7
+	HOUSEHOLD     = 8
+	GOODS         = 9
+	ELECTRICITY   = 10
+	GAS           = 11
+	WATER         = 12
+	T_CELLPHONE   = 13
+	N_CELLPHONE   = 14
+	INTERNET      = 15
+	HEALTHCARE    = 16
+	HAIRSALON     = 17
+	CHILD         = 18
+	INSURANCE     = 19
+	ASAHI         = 20
+	MEMBERSHIP    = 21
+	ENTERTAINMENT = 22
+	OTHER         = 99
 )
 
 // DBに登録・参照するための構造体
@@ -203,30 +204,30 @@ var (
 	//=== 費目で選択可能な文字列とまとめの計算有無
 	//===
 	Categories = map[int]KakeiboCategory{
-		NONE:        　　{"", false},
-		DINEOUT:     　　{"外食", true},
-		HOMEEATING:  　　{"家庭食", true},
-		BUSINESS:    　　{"仕事関連", false},
-		CLOTHES:     　　{"衣類・雑貨", false},
-		HOBBY:       　　{"趣味・娯楽", false},
-		TRAFFIC:     　　{"交通費", false},
-		RENT:        　　{"家賃", true},
-		HOUSEHOLD:   　　{"家具・家電", true},
-		GOODS:       　　{"日用雑貨", true},
-		ELECTRICITY: 　　{"電気代", true},
-		GAS:         　　{"ガス代", true},
-		WATER:       　　{"水道代", true},
-		T_CELLPHONE: 　　{"T携帯", true},
-		N_CELLPHONE: 　　{"N携帯", true},
-		INTERNET:    　　{"ネット", true},
-		HEALTHCARE:  　　{"医療費", true},
-		HAIRSALON:  　 　{"美容院", false},
-		CHILD: 	　　　　  　{"養育", true},
-		ENTERTAINMENT:　{"交際", false},
-		INSURANCE:   　　{"保険", false},
-		ASAHI:       　　{"Asahi", true},
-		MEMBERSHIP:  　　{"年会費", true},
-		OTHER:       　　{"雑費", false},
+		NONE:          {"", false},
+		DINEOUT:       {"外食", true},
+		HOMEEATING:    {"家庭食", true},
+		BUSINESS:      {"仕事関連", false},
+		CLOTHES:       {"衣類・雑貨", false},
+		HOBBY:         {"趣味・娯楽", false},
+		TRAFFIC:       {"交通費", false},
+		RENT:          {"家賃", true},
+		HOUSEHOLD:     {"家具・家電", true},
+		GOODS:         {"日用雑貨", true},
+		ELECTRICITY:   {"電気代", true},
+		GAS:           {"ガス代", true},
+		WATER:         {"水道代", true},
+		T_CELLPHONE:   {"T携帯", true},
+		N_CELLPHONE:   {"N携帯", true},
+		INTERNET:      {"ネット", true},
+		HEALTHCARE:    {"医療費", true},
+		HAIRSALON:     {"美容院", false},
+		CHILD:         {"養育", true},
+		ENTERTAINMENT: {"交際", false},
+		INSURANCE:     {"保険", false},
+		ASAHI:         {"Asahi", true},
+		MEMBERSHIP:    {"年会費", true},
+		OTHER:         {"雑費", false},
 	}
 )
 
