@@ -10,10 +10,6 @@ import (
 
 // 一覧画面の表示
 func ShowList(w http.ResponseWriter, r *http.Request) {
-
-	// エントリの日付を1月から2月に変更しても、1月として表示されてしまう
-	// 更新の不具合？削除もできない
-
 	var err error
 	//===
 	//=== postで渡された値の格納
